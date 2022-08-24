@@ -1,0 +1,137 @@
+:root {
+  --bg-primary: #202124;
+  --bg-secondary: #333333;
+  --white: #fff;
+  --blue: #5865f2;
+  --light-blue: #8891f2;
+  --green: #57F287;
+  --red: #ED4245;
+  --grey: #bdbdbd;
+}
+
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--white);
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  all: unset;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: var(--blue);
+  color: var(--white);
+  padding: 12px 32px 15px;
+  border-radius: 28px;
+  font-size: 20px;
+}
+
+button[loading]::after {
+  content: url("https://cdn.discordapp.com/attachments/672186923107745850/1012079519487758416/loader1.png");
+  filter: invert(100%);
+  animation: spin 1s linear infinite;
+  display: block;
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+
+}
+
+button:hover:not([loading]) {
+  outline: 0;
+  background-color: var(--light-blue);
+  box-shadow: 0 2px 9px 0 rgba(136, 145, 242, 0.44);
+  transform: translate(0px, -2px);
+  transition: box-shadow 300ms ease, transform 300ms ease, background-color 300ms ease, -webkit-transform 300ms ease;
+}
+
+button:active {
+  background-color: var(--blue) !important;
+}
+
+@keyframes spin {
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px 0;
+  background-color: var(--bg-primary);
+}
+
+.service {
+  display: flex;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.75);
+  /* width: 50%; */
+  padding: 20px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.service:last-child {
+  margin-bottom: 0px;
+}
+
+.service-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.service-left > img {
+  margin-bottom: 10px;
+}
+
+.service-left > p {
+  margin: 5px 0;
+}
+
+.service-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.service-status.loading {
+  color: var(--grey);
+}
+
+.service-status.good {
+  color: var(--green);
+
+}
+
+.service-status.bad {
+  color: var(--red);
+}
+
+.service-right > button {
+  width: 100%;
+}
+
+.service-avatar {
+  border-radius: 500px;
+}
