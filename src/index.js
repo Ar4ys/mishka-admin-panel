@@ -17,54 +17,66 @@ const API_ROUTE = {
   technicalWork: 'system/interactions/technicalWork/',
 };
 
+const kyBase = ky.extend({
+  mode: 'no-cors',
+});
+
 const API = {
   Communication: {
-    getFullStatus: () => ky.get(API_URL.Communication + API_ROUTE.fullState).json(),
-    restart: () => ky.post(API_URL.Communication + API_ROUTE.restart),
+    getFullStatus: () => kyBase.get(API_URL.Communication + API_ROUTE.fullState).json(),
+    restart: () => kyBase.post(API_URL.Communication + API_ROUTE.restart),
     /**
      * @param {boolean} state
      */
-    setTechnicalWork: state => ky.post(API_URL.Communication + API_ROUTE.technicalWork + state),
+    setTechnicalWork: state => kyBase.post(API_URL.Communication + API_ROUTE.technicalWork + state),
   },
   GamesService: {
-    getFullStatus: () => ky.get(API_URL.GamesService + API_ROUTE.fullState).json(),
-    restart: () => ky.post(API_URL.GamesService + API_ROUTE.restart),
+    getFullStatus: () => kyBase.get(API_URL.GamesService + API_ROUTE.fullState).json(),
+    restart: () => kyBase.post(API_URL.GamesService + API_ROUTE.restart),
     /**
      * @param {boolean} state
      */
-    setTechnicalWork: state => ky.post(API_URL.GamesService + API_ROUTE.technicalWork + state),
+    setTechnicalWork: state => kyBase.post(API_URL.GamesService + API_ROUTE.technicalWork + state),
   },
   WebHooks: {
-    getFullStatus: () => ky.get(API_URL.WebHooks + API_ROUTE.fullState).json(),
-    restart: () => ky.post(API_URL.WebHooks + API_ROUTE.restart),
+    getFullStatus: () => kyBase.get(API_URL.WebHooks + API_ROUTE.fullState).json(),
+    restart: () => kyBase.post(API_URL.WebHooks + API_ROUTE.restart),
     /**
      * @param {boolean} state
      */
-    setTechnicalWork: state => ky.post(API_URL.WebHooks + API_ROUTE.technicalWork + state),
+    setTechnicalWork: state => kyBase.post(API_URL.WebHooks + API_ROUTE.technicalWork + state),
   },
   DataBase: {
-    getFullStatus: () => ky.get(API_URL.DataBase + API_ROUTE.fullState).json(),
-    restart: () => ky.post(API_URL.DataBase + API_ROUTE.restart),
+    getFullStatus: () => kyBase.get(API_URL.DataBase + API_ROUTE.fullState).json(),
+    restart: () => kyBase.post(API_URL.DataBase + API_ROUTE.restart),
     /**
      * @param {boolean} state
      */
-    setTechnicalWork: state => ky.post(API_URL.DataBase + API_ROUTE.technicalWork + state),
+    setTechnicalWork: state => kyBase.post(API_URL.DataBase + API_ROUTE.technicalWork + state),
   },
   Subscribers: {
-    getFullStatus: () => ky.get(API_URL.Subscribers + API_ROUTE.fullState).json(),
-    restart: () => ky.post(API_URL.Subscribers + API_ROUTE.restart),
+    getFullStatus: () => kyBase.get(API_URL.Subscribers + API_ROUTE.fullState).json(),
+    restart: () => kyBase.post(API_URL.Subscribers + API_ROUTE.restart),
     /**buildService
      * @param {boolean} state
      */
-    setTechnicalWork: state => ky.post(API_URL.SlashCommands + API_ROUTE.technicalWork + state),
+    setTechnicalWork: state => kyBase.post(API_URL.Subscribers + API_ROUTE.technicalWork + state),
+  },
+  SlashCommands: {
+    getFullStatus: () => kyBase.get(API_URL.SlashCommands + API_ROUTE.fullState).json(),
+    restart: () => kyBase.post(API_URL.SlashCommands + API_ROUTE.restart),
+    /**buildService
+     * @param {boolean} state
+     */
+    setTechnicalWork: state => kyBase.post(API_URL.SlashCommands + API_ROUTE.technicalWork + state),
   },
   Payment: {
-    getFullStatus: () => ky.get(API_URL.Payment + API_ROUTE.fullState).json(),
-    restart: () => ky.post(API_URL.Payment + API_ROUTE.restart),
+    getFullStatus: () => kyBase.get(API_URL.Payment + API_ROUTE.fullState).json(),
+    restart: () => kyBase.post(API_URL.Payment + API_ROUTE.restart),
     /**
      * @param {boolean} state
      */
-    setTechnicalWork: state => ky.post(API_URL.Payment + API_ROUTE.technicalWork + state),
+    setTechnicalWork: state => kyBase.post(API_URL.Payment + API_ROUTE.technicalWork + state),
   },
 };
 
@@ -132,7 +144,7 @@ function Service(type) {
     }
   }
 
-  function checkStatus() {
+  async function checkStatus() {
     API[type]
       .getFullStatus()
       .then(response => {
