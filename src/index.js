@@ -12,7 +12,7 @@ const API_URL = {
 };
 
 const API_ROUTE = {
-  fullState: 'system/interactions/full',
+  fullState: 'system/state/full',
   restart: 'system/interactions/restart',
   technicalWork: 'system/interactions/technicalWork/',
 };
