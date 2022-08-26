@@ -1,4 +1,3 @@
-/// <reference path="../../typedef.d.ts"/>
 import { defaultServiceAvatarURL, offlineImgURL, onlineImgURL } from './constants.js';
 import { FullServiceStateList, html, Restart, SetTechnicalWork, Uptime } from './utils.js';
 
@@ -51,7 +50,6 @@ function Service(id, object) {
     restartButton.setAttribute('loading', 'true');
     Restart(id).finally(() => {
       restartButton.removeAttribute('loading');
-      // GetFullStatus(id).then(response => checkStatus(response));
     });
   });
 

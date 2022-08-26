@@ -1,4 +1,4 @@
-export const requestForwardingServiceURL = 'http://localhost:30000/redirecting';
+export const requestForwardingServiceURL = 'http://localhost:8080/test-data.json';
 export const defaultServiceAvatarURL =
   'https://cdn.discordapp.com/attachments/748413382142722130/750009283646849104/logo.png';
 export const onlineImgURL =

@@ -9,7 +9,7 @@ export const kyBase = ky.extend({ mode: 'cors' });
  */
 export const DefaultOptions = (method, url) => ({ json: { method, url } });
 export const FullServiceStateList = async () =>
-  /**@type {object} */ (
+  /** @type {StatusResponse} */ (
     await kyBase
       .post(`${requestForwardingServiceURL}/State`, DefaultOptions('get', 'service/fullList'))
       .json()
@@ -24,7 +24,7 @@ export const GetFullStatus = id =>
 /**
  * @param {string} id
  */
-export const Restart = (/** @type {string} */ id) =>
+export const Restart = id =>
   kyBase.post(
     `${requestForwardingServiceURL}/${id}`,
     DefaultOptions('post', 'system/interactions/restart')
