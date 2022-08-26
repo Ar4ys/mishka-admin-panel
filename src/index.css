@@ -12,6 +12,15 @@
     --text-secondary-color: #7c8997;
 }
 
+@media (max-width: 660px) {
+    .service-panel {
+        flex-direction: column;
+    }
+
+    .service-panel-right {
+        margin-top: 20px;
+    }
+}
 
 html,
 body {
@@ -38,21 +47,24 @@ button {
     font-size: 18px;
 }
 
-/* button[loading]::after {
+button[loading] {
+    color: transparent;
+}
+
+button[loading]::after {
     content: url("https://cdn.discordapp.com/attachments/672186923107745850/1012079519487758416/loader1.png");
     filter: invert(100%);
     animation: spin 1s linear infinite;
     display: block;
     position: absolute;
-    right: 30px;
+    right: 50%;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translate(50%, -50%);
     width: 24px;
     height: 24px;
+}
 
-} */
-
-/* button:hover:not([loading]) {
+button:hover:not([loading]) {
     outline: 0;
     background-color: var(--light-blue);
     box-shadow: 0 2px 9px 0 rgba(136, 145, 242, 0.44);
@@ -62,11 +74,11 @@ button {
 
 button:active {
     background-color: var(--blue) !important;
-} */
+}
 
 @keyframes spin {
     100% {
-        transform: translateY(-50%) rotate(360deg);
+        transform: translate(50%, -50%) rotate(360deg);
     }
 }
 
@@ -81,11 +93,17 @@ button:active {
     background-color: var(--bg-primary);
 }
 
+.hidden {
+    /* visibility: hidden; */
+    display: none !important;
+}
+
 .service-panel {
     display: flex;
+    justify-content: space-between;
+    width: 100%;
     background-color: var(--bg-secondary);
     border-radius: 12px;
-    /* box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.75); */
     padding: 12px;
     box-sizing: border-box;
     user-select: none;
@@ -97,10 +115,19 @@ button:active {
 }
 
 .service-panel:hover {
-    cursor: pointer;
     user-select: none;
     background-color: var(--bg-secondary-hover);
 }
+
+.service-panel-wrapper {
+    width: fit-content;
+}
+
+.service-panel-left,
+.service-panel-right {
+    display: flex;
+}
+
 
 .service-panel-avatar {
     display: flex;
@@ -147,7 +174,7 @@ button:active {
     margin-right: 14px;
 }
 
-.status>img {
+.status {
     position: absolute;
     width: 18px;
     height: 18px;
@@ -157,6 +184,18 @@ button:active {
 
     border-radius: 100px;
     box-shadow: 0 0 2px rgb(0, 0, 0);
+}
+
+.status.online {
+    background-color: var(--green);
+}
+
+.status.offline {
+    background-color: var(--red);
+}
+
+.status.loading {
+    background-color: var(--grey);
 }
 
 .title>p {
